@@ -7,24 +7,36 @@
          </style>
     </head> 
     <body>
-        <form onsubmit="show()"> 
-            Enter your name:<input type="textbox" placeholder="type here" id="name" /><br><br>
+        <form onsubmit="show(event)"> 
+            Enter your name:<input type="text" placeholder="type here" id="name"  onkeypress="return /[a-zA-Z]/i.test(event.key)" /><br><br>
             <input type="submit" />
             <center> 
                 <h2 id="msg"/> 
             </center>
             <script> 
-            function show() { 
+            function show(event) { 
                 event.preventDefault(); 
                 let msg = document.getElementById("msg"); 
                 let name = document.getElementById("name"); 
                 let d = new Date(); 
                 let hr = d.getHours();
-                 if (hr < 12) 
-                 msg.innerHTML = "good morning " + name.value;
-                  else if (hr < 16) 
-                  msg.innerHTML = "good afternoon " + name.value;
+                let nameValue = name.value.trim();
+                if(nameValue === "") {
+                    alert("Please enter your name.");
+                    return;
+                }
+                if (!/^[a-zA-Z]+$/.test(nameValue)) {
+                    alert("Please enter alphabets only.");
+                    return;
+                }
+                if (hr < 12) 
+                    msg.innerHTML = "Good morning " + nameValue;
+                else if (hr < 16) 
+                    msg.innerHTML = "Good afternoon " + nameValue;
                 else 
-                msg.innerHTML = "good evening " + name.value; } 
-                   </script>
-        </body> </html>
+                    msg.innerHTML = "Good evening " + nameValue;
+            } 
+            </script>
+        </form>
+    </body>
+</html>
