@@ -1,0 +1,30 @@
+<html> 
+    <head>
+         <title>FIRST HTML</title>
+        <style>
+         body{ background-color: aquamarine;} 
+         h1{font-size:70px} 
+         </style>
+    </head> 
+    <body>
+        <form onsubmit="show()"> 
+            Enter your name:<input type="textbox" placeholder="type here" id="name" /><br><br>
+            <input type="submit" />
+            <center> 
+                <h2 id="msg"/> 
+            </center>
+            <script> 
+            function show() { 
+                event.preventDefault(); 
+                let msg = document.getElementById("msg"); 
+                let name = document.getElementById("name"); 
+                let d = new Date(); 
+                let hr = d.getHours();
+                 if (hr < 12) 
+                 msg.innerHTML = "good morning " + name.value;
+                  else if (hr < 16) 
+                  msg.innerHTML = "good afternoon " + name.value;
+                else 
+                msg.innerHTML = "good evening " + name.value; } 
+                   </script>
+        </body> </html>
